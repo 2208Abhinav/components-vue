@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="./styles/bootstrap.min.css" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <title>Vue Components</title>
+        <style>
+            * {
+                border-radius: 0 !important;
+            }
+            body {
+                background-color:#E7F7F9;
+                font-family: 'Poppins', sans-serif;
+            }
+            .loader {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <!-- "v-for" will look for article in "data -> articles" -->
+                        <card v-on:delete-article="removeArticle($event)" v-for="article in articles.slice(0, articlePointer)" :title="article.title" :content="article.content"></card>
+                        <br>
+                        <div class="container loader">
+                            <button :disabled="disabled()" v-on:click="loadArticles()" class="btn btn-success">{{ disabled() ? "All Articles Loaded" : "Load More Articles" }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./assets/vue.js"></script>
+        <script src="./assets/axios.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
